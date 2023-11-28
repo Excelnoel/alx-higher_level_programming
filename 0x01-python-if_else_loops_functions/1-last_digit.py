@@ -5,9 +5,6 @@ number = random.randint(-10000, 10000)
 
 digit = number % 10 if number >= 0 else -(-number % 10)
 
-#if number < 0:
-#    digit = -digit
-
 print("Last digit of", number, "is", digit, end=" ")
 
 if digit > 5:
@@ -16,4 +13,3 @@ elif digit < 0:
     print("and is less than 6 and not 0")
 elif digit == 0:
     print("and is 0")
-
