@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-import hidden_4
+
+from variable_load_5 import a
 
 if __name__ == "__main__":
-    for str in dir(hidden_4):
-        if str[:2] != "__":
-            print("{}".format(str))
+    print("{:d}".format(a))
