@@ -1,5 +1,5 @@
-#ifndef MANNY 
-#define MANNY
+#ifndef LISTS_H
+#define LISTS_H
 
 #include <unistd.h>
 
