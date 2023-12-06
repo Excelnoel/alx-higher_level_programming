@@ -1,14 +1,13 @@
-#include <Python.h>
-#include <stdio.h>
+nclude <Python.h>
 
 /**
- * print_python_list - Prints basic info about a Python list
- * @p: Pointer to a Python list object
+ * print_python_list - Prints basic information about Python lists.
+ * @p: Pointer to a PyObject (Python list).
  */
 void print_python_list(PyObject *p)
 {
     Py_ssize_t size, i;
-    PyObject *item;
+    PyObject *obj;
 
     size = PyList_Size(p);
     printf("[*] Python list info\n");
@@ -17,19 +16,19 @@ void print_python_list(PyObject *p)
 
     for (i = 0; i < size; i++)
     {
-        item = PyList_GetItem(p, i);
-        printf("Element %ld: %s\n", i, Py_TYPE(item)->tp_name);
+        obj = PyList_GetItem(p, i);
+        printf("Element %ld: %s\n", i, Py_TYPE(obj)->tp_name);
     }
 }
 
 /**
- * print_python_bytes - Prints basic info about a Python bytes object
- * @p: Pointer to a Python bytes object
+ * print_python_bytes - Prints basic information about Python bytes objects.
+ * @p: Pointer to a PyObject (Python bytes object).
  */
 void print_python_bytes(PyObject *p)
 {
     Py_ssize_t size, i;
-    char *bytes_str;
+    char *string;
 
     printf("[.] bytes object info\n");
     if (!PyBytes_Check(p))
@@ -40,10 +39,16 @@ void print_python_bytes(PyObject *p)
 
     size = PyBytes_Size(p);
     printf("  size: %ld\n", size);
-    printf("  trying string: %s\n", ((PyBytesObject *)p)->ob_sval);
+    printf("  trying string: %s\n", PyBytes_AsString(p));
 
-    bytes_str = ((PyBytesObject *)p)->ob_sval;
-    printf("  first %ld bytes: ", size < 10 ? size : 10);
-    for (i = 0; i < size && i < 10; i++)
-        printf("%02hhx%c", bytes_str[i], i + 1 < size ? ' ' : '\n');
+    if (size > 10)
+        size = 10;
+
+    string = PyBytes_AsString(p);
+
+    printf("  first %ld bytes:", size);
+    for (i = 0; i < size; i++)
+        printf(" %02hhx", string[i]);
+
+    printf("\n");
 }
