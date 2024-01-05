@@ -71,18 +71,18 @@ def xout(board, row, col):
     for r in range(row - 1, -1, -1):
         board[r][col] = "x"
     # X out all spots diagonally down to the right
-    c = col + 1
-    for r in range(row + 1, len(board)):
-        if c >= len(board):
-            break
-        board[r][c] = "x"
-        c += 1
-    # X out all spots diagonally up to the left
     c = col - 1
     for r in range(row - 1, -1, -1):
         if c < 0:
             break
         board[r][c] = "x"
+        c -= 1
+    # X out all spots diagonally up to the left
+    c = col - 1
+    for r in range(row - 1, -1, -1):
+        if c < 0:
+            break
+        board[r][c]
         c -= 1
     # X out all spots diagonally up to the right
     c = col + 1
@@ -145,4 +145,3 @@ if __name__ == "__main__":
 
     sys.exit(0)
 # End of 101-nqueens.py
-
