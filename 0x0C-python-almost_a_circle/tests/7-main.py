@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 """ Doc """
+
+import sys
+sys.path.append("/alx-higher_level_programming/0x0C-python-almost_a_circle")
+
 from models.rectangle import Rectangle
 
 if __name__ == "__main__":
